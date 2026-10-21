@@ -948,3 +948,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderStaffingCalculator();
 });
+
+const workingCapitalItems = [
+  {
+    id: "rent",
+    name: "Monthly Rent & Occupancy Costs",
+    help: "Rent and recurring property costs after opening."
+  },
+  {
+    id: "wages",
+    name: "Monthly Payroll & Staff Costs",
+    help: "Wages, employer taxes and benefits for your operating team."
+  },
+  {
+    id: "utilities",
+    name: "Monthly Utilities",
+    help: "Electricity, water, gas, internet and other utilities."
+  },
+  {
+    id: "inventory",
+    name: "Monthly Inventory & Supplies",
+    help: "Coffee, milk, food, packaging and other replenishment costs."
+  },
+  {
+    id: "software",
+    name: "Monthly Software & Subscriptions",
+    help: "POS subscriptions, scheduling, accounting and other software."
+  },
+  {
+    id: "insurance",
+    name: "Monthly Insurance",
+    help: "Ongoing insurance costs after opening."
+  },
+  {
+    id: "marketing",
+    name: "Monthly Marketing",
+    help: "Advertising, promotions and customer acquisition."
+  },
+  {
+    id: "other",
+    name: "Other Monthly Operating Expenses",
+    help: "Maintenance, professional services and other recurring expenses."
+  }
+];
+
+const workingCapitalValues = {};
