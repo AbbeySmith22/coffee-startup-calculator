@@ -425,3 +425,56 @@ const propertyItems = [
 ];
 
 const propertyValues = {};
+
+function renderPropertyCalculator() {
+  const container = document.getElementById("propertyCalculator");
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="step">STEP 4 — STARTUP COSTS</div>
+    <h2>Rent & Property Costs</h2>
+
+    <p class="hint">
+      Include the costs of securing your location and
+      paying for it before your coffee shop opens.
+      Use your actual lease terms whenever possible.
+    </p>
+
+    ${propertyItems.map(item => `
+      <div class="field">
+        <label for="property-${item.id}">${item.name}</label>
+        <p class="hint">${item.help}</p>
+        <input
+          id="property-${item.id}"
+          type="number"
+          min="0"
+          step="0.01"
+          value="${propertyValues[item.id] ?? ""}"
+          placeholder="Enter estimated cost ($)"
+        >
+      </div>
+    `).join("")}
+
+    <div class="budget-total">
+      <strong>Rent & Property Costs Total</strong>
+      <strong id="propertyTotal">$0</strong>
+    </div>
+
+    <p class="hint">
+      Bellissimo planning reminder: Rent can start long
+      before your first customer walks through the door.
+      Allow for construction and permitting delays, and
+      avoid counting the same rent payment twice.
+    </p>
+
+    <button type="button" id="propertyBack"
+      style="margin-top: 24px; background: #E8E0D8;">
+      ← Back to Construction & Build-Out
+    </button>
+
+    <button type="button" id="propertyNext"
+      style="margin-top: 12px;">
+      Continue to Next Budget Section →
+    </button>
+  `;
+}
