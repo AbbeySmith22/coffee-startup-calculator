@@ -153,3 +153,169 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderEquipmentCalculator();
 });
+
+const constructionItems = [
+  {
+    id: "design",
+    name: "Design & Architectural Plans",
+    help: "Architectural drawings, layout design and professional design fees."
+  },
+  {
+    id: "permits",
+    name: "Permits & Inspections",
+    help: "Building permits, inspections and local approval costs."
+  },
+  {
+    id: "plumbing",
+    name: "Plumbing & Drainage",
+    help: "Water lines, drains, sinks and plumbing installation."
+  },
+  {
+    id: "electrical",
+    name: "Electrical Upgrades",
+    help: "Power requirements, outlets, lighting and electrical installation."
+  },
+  {
+    id: "construction",
+    name: "General Construction",
+    help: "Contractors, walls, structural changes and general build-out work."
+  },
+  {
+    id: "counters",
+    name: "Counters & Service Bar",
+    help: "Customer counter, espresso bar and service-area construction."
+  },
+  {
+    id: "finishes",
+    name: "Flooring, Painting & Finishes",
+    help: "Flooring, painting, tiling and interior finishes."
+  },
+  {
+    id: "signage",
+    name: "Signage",
+    help: "Exterior and interior signage, including installation."
+  },
+  {
+    id: "installation",
+    name: "Equipment Installation",
+    help: "Installation costs not already included in equipment quotes."
+  },
+  {
+    id: "other",
+    name: "Other Build-Out Costs",
+    help: "Any additional construction or property-specific expenses."
+  }
+];
+
+const constructionValues = {};
+
+function renderConstructionCalculator() {
+  const container =
+    document.getElementById("constructionCalculator");
+
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="step">STEP 3 — STARTUP COSTS</div>
+    <h2>Construction & Build-Out</h2>
+
+    <p class="hint">
+      Estimate the costs of preparing your space for opening.
+      Use contractor quotes whenever possible.
+    </p>
+
+    ${constructionItems.map(item => `
+      <div class="field">
+        <label for="construction-${item.id}">
+          ${item.name}
+        </label>
+        <p class="hint">${item.help}</p>
+        <input
+          id="construction-${item.id}"
+          type="number"
+          min="0"
+          step="0.01"
+          value="${constructionValues[item.id] ?? ""}"
+          placeholder="Enter estimated cost ($)"
+        >
+      </div>
+    `).join("")}
+
+    <div class="budget-total">
+      <strong>Construction & Build-Out Total</strong>
+      <strong id="constructionTotal">$0</strong>
+    </div>
+
+    <p class="hint">
+      Bellissimo planning reminder: Don't build your budget
+      around the best-case number. Construction surprises,
+      permitting delays and unexpected upgrades can increase
+      your startup costs.
+    </p>
+
+    <button type="button" id="constructionNext"
+      style="margin-top: 24px;">
+      Continue to Next Budget Section →
+    </button>
+  `;
+
+  constructionItems.forEach(item => {
+    const input =
+      document.getElementById(`construction-${item.id}`);
+
+    input.addEventListener("input", () => {
+      const value = Number(input.value);
+
+      constructionValues[item.id] =
+        input.value !== "" &&
+        Number.isFinite(value) &&
+        value >= 0
+          ? value
+          : null;
+
+      updateConstructionTotal();
+    });
+  });
+
+  updateConstructionTotal();
+}
+
+function updateConstructionTotal() {
+  const total = constructionItems.reduce(
+    (sum, item) =>
+      sum + (constructionValues[item.id] || 0),
+    0
+  );
+
+  document.getElementById("constructionTotal")
+    .textContent = formatMoney(total);
+
+  sessionStorage.setItem(
+    "coffeeBudgetConstruction",
+    JSON.stringify(constructionValues)
+  );
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const saved = JSON.parse(
+      sessionStorage.getItem("coffeeBudgetConstruction") || "{}"
+    );
+
+    constructionItems.forEach(item => {
+      const value = saved[item.id];
+
+      if (
+        typeof value === "number" &&
+        Number.isFinite(value) &&
+        value >= 0
+      ) {
+        constructionValues[item.id] = value;
+      }
+    });
+  } catch (error) {
+    console.warn("Could not restore construction values.");
+  }
+
+  renderConstructionCalculator();
+});
