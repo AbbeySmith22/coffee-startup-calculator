@@ -667,10 +667,29 @@ function renderInventoryCalculator() {
       style="margin-top: 12px;">
       Continue to Next Budget Section →
     </button>
+ 
   `;
+
+  inventoryItems.forEach(item => {
+    const input = document.getElementById(`inventory-${item.id}`);
+
+    input.addEventListener("input", () => {
+      const value = Number(input.value);
+
+      inventoryValues[item.id] =
+        input.value !== "" && Number.isFinite(value) && value >= 0
+          ? value
+          : null;
+
+      updateInventoryTotal();
+    });
+  });
+
+  updateInventoryTotal();
 }
 
 function updateInventoryTotal() {
+
   const total = inventoryItems.reduce((sum, item) => {
     return sum + (inventoryValues[item.id] || 0);
   }, 0);
