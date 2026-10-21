@@ -700,10 +700,26 @@ function renderInventoryCalculator() {
     });
   });
 
+
   updateInventoryTotal();
+
+  document.getElementById("inventoryBack")
+    .addEventListener("click", () => {
+      document.getElementById("inventoryCalculator")
+        .style.display = "none";
+
+      document.getElementById("propertyCalculator")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
 }
 
 function updateInventoryTotal() {
+
 
   const total = inventoryItems.reduce((sum, item) => {
     return sum + (inventoryValues[item.id] || 0);
