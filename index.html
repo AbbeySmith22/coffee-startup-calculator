@@ -125,6 +125,25 @@
       .container { margin: 24px auto; padding: 16px; }
       .card { padding: 22px; }
     }
+    .budget-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: #FAF7F4;
+  border: 1px solid #E8E0D8;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 24px;
+  font-size: 18px;
+}
+
+@media (max-width: 480px) {
+  .budget-total {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
   </style>
 </head>
 
@@ -186,7 +205,8 @@
 
         <div class="field">
           <label for="confidence">How accurate are your current cost estimates?</label>
-          <select id="confidence" required>
+          <select id
+            ="confidence" required>
             <option value="">Select an option</option>
             <option value="guesses">Mostly guesses at this stage</option>
             <option value="research">I've researched some costs</option>
@@ -197,7 +217,7 @@
         <button type="submit">Continue to My Startup Budget →</button>
       </form>
     </section>
-
+<section class="card" id="equipmentCalculator" style="margin-top: 24px;"></section>
     <p class="note">
       Built around Bellissimo's practical coffee business planning principles.
       All budgets should be verified against local quotes and actual costs.
@@ -229,5 +249,6 @@
       }
     );
   </script>
+  <script src="calculator.js"></script>
 </body>
 </html>
