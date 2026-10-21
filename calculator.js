@@ -87,17 +87,23 @@ function renderEquipmentCalculator() {
       </div>
     `).join("")}
 
-    <div class="budget-total">
-      <strong>Equipment & Furnishings Total</strong>
-      <strong id="equipmentTotal">$0</strong>
-    </div>
 
-    <p class="hint">
-      Planning reminder: An unpriced item is not necessarily
-      a free item. Confirm equipment needs and supplier
-      quotes before finalizing your budget.
-    </p>
-  `;
+<div class="budget-total">
+  <strong>Equipment & Furnishings Total</strong>
+  <strong id="equipmentTotal">$0</strong>
+</div>
+
+<p class="hint">
+  Planning reminder: An unpriced item is not necessarily
+  a free item. Confirm equipment needs and supplier
+  quotes before finalizing your budget.
+</p>
+
+<button type="button" id="equipmentNext"
+  style="margin-top: 24px;">
+  Continue to Construction & Build-Out →
+</button>
+`;
 
   equipmentItems.forEach(item => {
     const input = document.getElementById(`cost-${item.id}`);
