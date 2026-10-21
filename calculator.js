@@ -509,10 +509,26 @@ function renderPropertyCalculator() {
     });
   });
 
+  
   updatePropertyTotal();
+
+  document.getElementById("propertyBack")
+    .addEventListener("click", () => {
+      document.getElementById("propertyCalculator")
+        .style.display = "none";
+
+      document.getElementById("constructionCalculator")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
 }
 
 function updatePropertyTotal() {
+
 
   const total = propertyItems.reduce((sum, item) => {
     return sum + (propertyValues[item.id] || 0);
