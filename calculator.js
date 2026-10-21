@@ -120,10 +120,26 @@ function renderEquipmentCalculator() {
     });
   });
 
+
   updateEquipmentTotal();
+
+  document.getElementById("equipmentNext")
+    .addEventListener("click", () => {
+      document.getElementById("equipmentCalculator")
+        .style.display = "none";
+
+      document.getElementById("constructionCalculator")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
 }
 
 function updateEquipmentTotal() {
+
   const total = equipmentItems.reduce((sum, item) => {
     return sum + (equipmentValues[item.id] || 0);
   }, 0);
