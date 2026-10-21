@@ -296,10 +296,17 @@ function renderConstructionCalculator() {
       your startup costs.
     </p>
 
-    <button type="button" id="constructionNext"
-      style="margin-top: 24px;">
-      Continue to Next Budget Section →
-    </button>
+    
+<button type="button" id="constructionBack"
+  style="margin-top: 24px; background: #E8E0D8;">
+  ← Back to Equipment & Furnishings
+</button>
+
+<button type="button" id="constructionNext"
+  style="margin-top: 12px;">
+  Continue to Next Budget Section →
+</button>
+
   `;
 
   constructionItems.forEach(item => {
