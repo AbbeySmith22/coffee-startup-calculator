@@ -241,10 +241,18 @@
           JSON.stringify(concept)
         );
 
-        alert(
-          "Your coffee shop concept has been saved. " +
-          "The next step will be your detailed startup budget."
-        );
+       
+document.getElementById("conceptForm")
+  .closest(".card").style.display = "none";
+
+document.getElementById("equipmentCalculator")
+  .style.display = "block";
+
+window.scrollTo({
+  top: 0,
+  behavior: "smooth"
+});
+
       }
     );
   </script>
