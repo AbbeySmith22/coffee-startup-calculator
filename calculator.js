@@ -512,6 +512,21 @@ function renderPropertyCalculator() {
   
   updatePropertyTotal();
 
+  document.getElementById("propertyNext")
+    .addEventListener("click", () => {
+      document.getElementById("propertyCalculator")
+        .style.display = "none";
+
+      document.getElementById("inventoryCalculator")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+
   document.getElementById("propertyBack")
     .addEventListener("click", () => {
       document.getElementById("propertyCalculator")
