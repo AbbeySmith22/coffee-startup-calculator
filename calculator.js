@@ -757,3 +757,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderInventoryCalculator();
 });
+
+const staffingItems = [
+  {
+    id: "recruitment",
+    name: "Recruitment & Hiring",
+    help: "Job advertisements, recruitment fees and hiring expenses."
+  },
+  {
+    id: "training",
+    name: "Staff Training",
+    help: "Barista training, customer service training and onboarding."
+  },
+  {
+    id: "wages",
+    name: "Pre-Opening Staff Wages",
+    help: "Wages paid before opening, including training and setup days."
+  },
+  {
+    id: "payroll",
+    name: "Pre-Opening Payroll Taxes & Benefits",
+    help: "Employer payroll costs associated with pre-opening wages."
+  },
+  {
+    id: "marketing",
+    name: "Launch Marketing & Advertising",
+    help: "Website, social media, promotional materials and advertising."
+  },
+  {
+    id: "opening",
+    name: "Grand Opening Expenses",
+    help: "Opening events, promotions and launch activities."
+  },
+  {
+    id: "professional",
+    name: "Professional & Business Setup Fees",
+    help: "Accounting, business formation and other professional fees not included elsewhere."
+  },
+  {
+    id: "licenses",
+    name: "Business Licenses & Certifications",
+    help: "Business registrations, food permits and certifications not already included in construction costs."
+  },
+  {
+    id: "other",
+    name: "Other Pre-Opening Expenses",
+    help: "Additional expenses incurred before opening your coffee shop."
+  }
+];
+
+const staffingValues = {};
