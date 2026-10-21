@@ -669,3 +669,17 @@ function renderInventoryCalculator() {
     </button>
   `;
 }
+
+function updateInventoryTotal() {
+  const total = inventoryItems.reduce((sum, item) => {
+    return sum + (inventoryValues[item.id] || 0);
+  }, 0);
+
+  document.getElementById("inventoryTotal").textContent =
+    formatMoney(total);
+
+  sessionStorage.setItem(
+    "coffeeBudgetInventory",
+    JSON.stringify(inventoryValues)
+  );
+}
