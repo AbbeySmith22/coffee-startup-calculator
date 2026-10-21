@@ -99,10 +99,17 @@ function renderEquipmentCalculator() {
   quotes before finalizing your budget.
 </p>
 
+
+<button type="button" id="equipmentBack"
+  style="margin-top: 24px; background: #E8E0D8;">
+  ← Back to My Coffee Shop Concept
+</button>
+
 <button type="button" id="equipmentNext"
-  style="margin-top: 24px;">
+  style="margin-top: 12px;">
   Continue to Construction & Build-Out →
 </button>
+
 `;
 
   equipmentItems.forEach(item => {
