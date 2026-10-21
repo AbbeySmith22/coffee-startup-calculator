@@ -858,10 +858,29 @@ function renderStaffingCalculator() {
       style="margin-top: 12px;">
       Continue to Next Budget Section →
     </button>
+
   `;
+
+  staffingItems.forEach(item => {
+    const input = document.getElementById(`staffing-${item.id}`);
+
+    input.addEventListener("input", () => {
+      const value = Number(input.value);
+
+      staffingValues[item.id] =
+        input.value !== "" && Number.isFinite(value) && value >= 0
+          ? value
+          : null;
+
+      updateStaffingTotal();
+    });
+  });
+
+  updateStaffingTotal();
 }
 
 function updateStaffingTotal() {
+
   const total = staffingItems.reduce((sum, item) => {
     return sum + (staffingValues[item.id] || 0);
   }, 0);
