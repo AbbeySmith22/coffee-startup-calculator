@@ -616,3 +616,56 @@ const inventoryItems = [
 ];
 
 const inventoryValues = {};
+
+function renderInventoryCalculator() {
+  const container = document.getElementById("inventoryCalculator");
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="step">STEP 5 — STARTUP COSTS</div>
+    <h2>Initial Inventory & Opening Supplies</h2>
+
+    <p class="hint">
+      Estimate the stock and supplies you'll need before
+      opening your coffee shop. Use supplier prices and
+      realistic opening quantities whenever possible.
+    </p>
+
+    ${inventoryItems.map(item => `
+      <div class="field">
+        <label for="inventory-${item.id}">${item.name}</label>
+        <p class="hint">${item.help}</p>
+        <input
+          id="inventory-${item.id}"
+          type="number"
+          min="0"
+          step="0.01"
+          value="${inventoryValues[item.id] ?? ""}"
+          placeholder="Enter estimated cost ($)"
+        >
+      </div>
+    `).join("")}
+
+    <div class="budget-total">
+      <strong>Initial Inventory Total</strong>
+      <strong id="inventoryTotal">$0</strong>
+    </div>
+
+    <p class="hint">
+      Bellissimo planning reminder: Your opening inventory
+      should reflect your actual menu and expected demand.
+      Don't overbuy perishable products, but make sure you
+      have enough supplies to operate smoothly.
+    </p>
+
+    <button type="button" id="inventoryBack"
+      style="margin-top: 24px; background: #E8E0D8;">
+      ← Back to Rent & Property Costs
+    </button>
+
+    <button type="button" id="inventoryNext"
+      style="margin-top: 12px;">
+      Continue to Next Budget Section →
+    </button>
+  `;
+}
