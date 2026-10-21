@@ -327,10 +327,26 @@ function renderConstructionCalculator() {
     });
   });
 
+ 
   updateConstructionTotal();
+
+  document.getElementById("constructionBack")
+    .addEventListener("click", () => {
+      document.getElementById("constructionCalculator")
+        .style.display = "none";
+
+      document.getElementById("equipmentCalculator")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
 }
 
 function updateConstructionTotal() {
+
   const total = constructionItems.reduce(
     (sum, item) =>
       sum + (constructionValues[item.id] || 0),
