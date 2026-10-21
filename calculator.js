@@ -860,3 +860,17 @@ function renderStaffingCalculator() {
     </button>
   `;
 }
+
+function updateStaffingTotal() {
+  const total = staffingItems.reduce((sum, item) => {
+    return sum + (staffingValues[item.id] || 0);
+  }, 0);
+
+  document.getElementById("staffingTotal").textContent =
+    formatMoney(total);
+
+  sessionStorage.setItem(
+    "coffeeBudgetStaffing",
+    JSON.stringify(staffingValues)
+  );
+}
