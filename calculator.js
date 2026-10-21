@@ -385,3 +385,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderConstructionCalculator();
 });
+
+const propertyItems = [
+  {
+    id: "deposit",
+    name: "Security Deposit",
+    help: "The deposit required by your landlord when signing the lease."
+  },
+  {
+    id: "advanceRent",
+    name: "Advance Rent",
+    help: "Any rent you must pay upfront when signing your lease."
+  },
+  {
+    id: "preOpeningRent",
+    name: "Rent Before Opening",
+    help: "Rent payable during construction, setup and permitting delays. Do not double-count advance rent."
+  },
+  {
+    id: "utilities",
+    name: "Utility Deposits & Connections",
+    help: "Electricity, water, gas, internet and other connection costs."
+  },
+  {
+    id: "legal",
+    name: "Legal & Lease Review Fees",
+    help: "Professional fees for reviewing and negotiating your lease."
+  },
+  {
+    id: "insurance",
+    name: "Pre-Opening Insurance",
+    help: "Insurance premiums payable before your coffee shop opens."
+  },
+  {
+    id: "other",
+    name: "Other Property Costs",
+    help: "Additional property-related expenses not included elsewhere."
+  }
+];
+
+const propertyValues = {};
