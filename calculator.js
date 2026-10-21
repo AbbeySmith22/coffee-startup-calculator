@@ -702,3 +702,27 @@ function updateInventoryTotal() {
     JSON.stringify(inventoryValues)
   );
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const saved = JSON.parse(
+      sessionStorage.getItem("coffeeBudgetInventory") || "{}"
+    );
+
+    inventoryItems.forEach(item => {
+      const value = saved[item.id];
+
+      if (
+        typeof value === "number" &&
+        Number.isFinite(value) &&
+        value >= 0
+      ) {
+        inventoryValues[item.id] = value;
+      }
+    });
+  } catch (error) {
+    console.warn("Could not restore inventory values.");
+  }
+
+  renderInventoryCalculator();
+});
