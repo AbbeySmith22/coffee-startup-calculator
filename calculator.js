@@ -566,3 +566,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderPropertyCalculator();
 });
+
+const inventoryItems = [
+  {
+    id: "coffee",
+    name: "Coffee Beans",
+    help: "Your initial supply of espresso and brewed coffee beans."
+  },
+  {
+    id: "milk",
+    name: "Milk & Dairy Alternatives",
+    help: "Milk, oat milk and other alternatives for opening stock."
+  },
+  {
+    id: "syrups",
+    name: "Syrups, Sauces & Drink Ingredients",
+    help: "Flavourings, chocolate, chai, matcha and other drink ingredients."
+  },
+  {
+    id: "tea",
+    name: "Tea & Other Beverages",
+    help: "Tea, bottled drinks and other beverage inventory."
+  },
+  {
+    id: "food",
+    name: "Food Inventory",
+    help: "Pastries, baked goods, sandwiches and other opening food stock."
+  },
+  {
+    id: "cups",
+    name: "Cups, Lids & Packaging",
+    help: "Takeaway cups, lids, napkins, bags and food packaging."
+  },
+  {
+    id: "cleaning",
+    name: "Cleaning & Sanitation Supplies",
+    help: "Cleaning chemicals, sanitizers and disposable supplies."
+  },
+  {
+    id: "retail",
+    name: "Retail Products",
+    help: "Packaged coffee, merchandise and other items for resale."
+  },
+  {
+    id: "other",
+    name: "Other Opening Inventory",
+    help: "Any additional stock or consumables needed for opening."
+  }
+];
+
+const inventoryValues = {};
