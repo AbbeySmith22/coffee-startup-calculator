@@ -891,10 +891,26 @@ function renderStaffingCalculator() {
     });
   });
 
+
   updateStaffingTotal();
+
+  document.getElementById("staffingBack")
+    .addEventListener("click", () => {
+      document.getElementById("staffingCalculator")
+        .style.display = "none";
+
+      document.getElementById("inventoryCalculator")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
 }
 
 function updateStaffingTotal() {
+
 
   const total = staffingItems.reduce((sum, item) => {
     return sum + (staffingValues[item.id] || 0);
