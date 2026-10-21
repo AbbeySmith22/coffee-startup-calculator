@@ -807,3 +807,56 @@ const staffingItems = [
 ];
 
 const staffingValues = {};
+
+function renderStaffingCalculator() {
+  const container = document.getElementById("staffingCalculator");
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="step">STEP 6 — STARTUP COSTS</div>
+    <h2>Staffing & Pre-Opening Expenses</h2>
+
+    <p class="hint">
+      Estimate the costs of hiring, training and preparing
+      your coffee shop before opening day.
+      Use actual quotes and realistic estimates where possible.
+    </p>
+
+    ${staffingItems.map(item => `
+      <div class="field">
+        <label for="staffing-${item.id}">${item.name}</label>
+        <p class="hint">${item.help}</p>
+        <input
+          id="staffing-${item.id}"
+          type="number"
+          min="0"
+          step="0.01"
+          value="${staffingValues[item.id] ?? ""}"
+          placeholder="Enter estimated cost ($)"
+        >
+      </div>
+    `).join("")}
+
+    <div class="budget-total">
+      <strong>Staffing & Pre-Opening Total</strong>
+      <strong id="staffingTotal">$0</strong>
+    </div>
+
+    <p class="hint">
+      Bellissimo planning reminder: Your team may need
+      to be hired and trained before your first sale.
+      Include wages, payroll costs and preparation time
+      in your startup budget.
+    </p>
+
+    <button type="button" id="staffingBack"
+      style="margin-top: 24px; background: #E8E0D8;">
+      ← Back to Initial Inventory
+    </button>
+
+    <button type="button" id="staffingNext"
+      style="margin-top: 12px;">
+      Continue to Next Budget Section →
+    </button>
+  `;
+}
