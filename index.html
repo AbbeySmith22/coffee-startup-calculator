@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup Cost & Budget Calculator | Coffee Business</title>
+
+  <style>
+    :root {
+      --cream: #FAF7F4;
+      --charcoal: #252120;
+      --gold: #F8B144;
+      --border: #E8E0D8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 60px auto;
+      padding: 24px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #9B6A22;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.15;
+      margin: 12px 0 18px;
+    }
+
+    .intro {
+      font-size: 17px;
+      color: #615B57;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 8px 30px rgba(37,33,32,.04);
+    }
+
+    .step {
+      font-size: 13px;
+      font-weight: 700;
+      color: #8A6A42;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 25px;
+      line-height: 1.3;
+      margin: 0 0 24px;
+    }
+
+    .field { margin-bottom: 24px; }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hint {
+      font-size: 13px;
+      color: #77706A;
+      margin: 5px 0 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #D6CEC6;
+      border-radius: 9px;
+      font: inherit;
+      background: #fff;
+      color: var(--charcoal);
+    }
+
+    input:focus, select:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    button {
+      background: var(--gold);
+      border: none;
+      border-radius: 9px;
+      padding: 16px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--charcoal);
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover { background: #EDAA3B; }
+
+    .note {
+      margin-top: 22px;
+      font-size: 13px;
+      color: #77706A;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .container { margin: 24px auto; padding: 16px; }
+      .card { padding: 22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <div class="eyebrow">Coffee Business Toolkit</div>
+
+    <h1>Startup Cost & Budget Calculator</h1>
+
+    <p class="intro">
+      Start putting real numbers behind your coffee shop idea.
+      Build a practical startup budget using Bellissimo's
+      coffee business planning approach.
+    </p>
+
+    <section class="card">
+      <div class="step">STEP 1 — YOUR COFFEE SHOP CONCEPT</div>
+      <h2>Tell us a little about your business.</h2>
+
+      <form id="conceptForm">
+
+        <div class="field">
+          <label for="format">What type of coffee business are you planning?</label>
+          <select id="format" required>
+            <option value="">Select your business format</option>
+            <option value="cafe">Café with seating</option>
+            <option value="takeaway">Takeaway espresso bar</option>
+            <option value="kiosk">Coffee kiosk</option>
+            <option value="drive-through">Drive-through coffee shop</option>
+            <option value="other">Other / Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="size">Approximate shop size (square feet)</label>
+          <p class="hint">
+            An estimate is fine. Leave blank if you haven't
+            found a location yet.
+          </p>
+          <input
+            id="size"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="e.g. 1500"
+          >
+        </div>
+
+        <div class="field">
+          <label for="stage">Where are you in the planning process?</label>
+          <select id="stage" required>
+            <option value="">Select your stage</option>
+            <option value="exploring">Exploring my coffee shop idea</option>
+            <option value="searching">Looking for a location</option>
+            <option value="lease">Negotiating a lease</option>
+            <option value="opening">Preparing to open</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="confidence">How accurate are your current cost estimates?</label>
+          <select id="confidence" required>
+            <option value="">Select an option</option>
+            <option value="guesses">Mostly guesses at this stage</option>
+            <option value="research">I've researched some costs</option>
+            <option value="quotes">I have actual supplier or contractor quotes</option>
+          </select>
+        </div>
+
+        <button type="submit">Continue to My Startup Budget →</button>
+      </form>
+    </section>
+
+    <p class="note">
+      Built around Bellissimo's practical coffee business planning principles.
+      All budgets should be verified against local quotes and actual costs.
+    </p>
+  </main>
+
+  <script>
+    document.getElementById("conceptForm").addEventListener(
+      "submit",
+      function(event) {
+        event.preventDefault();
+
+        const concept = {
+          format: document.getElementById("format").value,
+          squareFeet: document.getElementById("size").value,
+          stage: document.getElementById("stage").value,
+          confidence: document.getElementById("confidence").value
+        };
+
+        sessionStorage.setItem(
+          "coffeeBudgetConcept",
+          JSON.stringify(concept)
+        );
+
+        alert(
+          "Your coffee shop concept has been saved. " +
+          "The next step will be your detailed startup budget."
+        );
+      }
+    );
+  </script>
+</body>
+</html>
