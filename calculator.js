@@ -130,6 +130,20 @@ function renderEquipmentCalculator() {
 
   updateEquipmentTotal();
 
+  document.getElementById("equipmentBack")
+    .addEventListener("click", () => {
+      document.getElementById("equipmentCalculator")
+        .style.display = "none";
+
+      document.getElementById("conceptForm")
+        .closest(".card").style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
   document.getElementById("equipmentNext")
     .addEventListener("click", () => {
       document.getElementById("equipmentCalculator")
