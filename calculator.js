@@ -330,6 +330,21 @@ function renderConstructionCalculator() {
  
   updateConstructionTotal();
 
+  document.getElementById("constructionNext")
+    .addEventListener("click", () => {
+      document.getElementById("constructionCalculator")
+        .style.display = "none";
+
+      document.getElementById("propertyCalculator")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+
   document.getElementById("constructionBack")
     .addEventListener("click", () => {
       document.getElementById("constructionCalculator")
