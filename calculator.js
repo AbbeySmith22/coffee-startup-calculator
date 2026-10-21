@@ -893,3 +893,27 @@ function updateStaffingTotal() {
     JSON.stringify(staffingValues)
   );
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const saved = JSON.parse(
+      sessionStorage.getItem("coffeeBudgetStaffing") || "{}"
+    );
+
+    staffingItems.forEach(item => {
+      const value = saved[item.id];
+
+      if (
+        typeof value === "number" &&
+        Number.isFinite(value) &&
+        value >= 0
+      ) {
+        staffingValues[item.id] = value;
+      }
+    });
+  } catch (error) {
+    console.warn("Could not restore staffing values.");
+  }
+
+  renderStaffingCalculator();
+});
