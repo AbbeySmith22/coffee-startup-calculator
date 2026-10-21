@@ -478,3 +478,17 @@ function renderPropertyCalculator() {
     </button>
   `;
 }
+
+function updatePropertyTotal() {
+  const total = propertyItems.reduce((sum, item) => {
+    return sum + (propertyValues[item.id] || 0);
+  }, 0);
+
+  document.getElementById("propertyTotal").textContent =
+    formatMoney(total);
+
+  sessionStorage.setItem(
+    "coffeeBudgetProperty",
+    JSON.stringify(propertyValues)
+  );
+}
