@@ -511,3 +511,27 @@ function updatePropertyTotal() {
     JSON.stringify(propertyValues)
   );
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const saved = JSON.parse(
+      sessionStorage.getItem("coffeeBudgetProperty") || "{}"
+    );
+
+    propertyItems.forEach(item => {
+      const value = saved[item.id];
+
+      if (
+        typeof value === "number" &&
+        Number.isFinite(value) &&
+        value >= 0
+      ) {
+        propertyValues[item.id] = value;
+      }
+    });
+  } catch (error) {
+    console.warn("Could not restore property values.");
+  }
+
+  renderPropertyCalculator();
+});
