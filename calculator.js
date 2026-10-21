@@ -476,10 +476,29 @@ function renderPropertyCalculator() {
       style="margin-top: 12px;">
       Continue to Next Budget Section →
     </button>
+
   `;
+
+  propertyItems.forEach(item => {
+    const input = document.getElementById(`property-${item.id}`);
+
+    input.addEventListener("input", () => {
+      const value = Number(input.value);
+
+      propertyValues[item.id] =
+        input.value !== "" && Number.isFinite(value) && value >= 0
+          ? value
+          : null;
+
+      updatePropertyTotal();
+    });
+  });
+
+  updatePropertyTotal();
 }
 
 function updatePropertyTotal() {
+
   const total = propertyItems.reduce((sum, item) => {
     return sum + (propertyValues[item.id] || 0);
   }, 0);
