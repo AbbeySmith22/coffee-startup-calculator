@@ -703,6 +703,21 @@ function renderInventoryCalculator() {
 
   updateInventoryTotal();
 
+  document.getElementById("inventoryNext")
+    .addEventListener("click", () => {
+      document.getElementById("inventoryCalculator")
+        .style.display = "none";
+
+      document.getElementById("staffingCalculator")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+
   document.getElementById("inventoryBack")
     .addEventListener("click", () => {
       document.getElementById("inventoryCalculator")
