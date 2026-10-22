@@ -1228,3 +1228,46 @@ function getStartupBudgetTotals() {
     subtotal: startupCosts + workingCapital
   };
 }
+
+function renderBudgetSummary() {
+  const container = document.getElementById("budgetSummary");
+  if (!container) return;
+
+  const totals = getStartupBudgetTotals();
+
+  container.innerHTML = `
+    <div class="step">STEP 8 — YOUR RESULTS</div>
+    <h2>Your Coffee Shop Startup Budget</h2>
+
+    <p class="hint">
+      Here's your estimated startup budget based on
+      the costs you've entered.
+    </p>
+
+    ${[
+      ["Equipment & Furnishings", totals.equipment],
+      ["Construction & Build-Out", totals.construction],
+      ["Rent & Property Costs", totals.property],
+      ["Initial Inventory", totals.inventory],
+      ["Staffing & Pre-Opening", totals.staffing],
+      ["Working Capital Reserve", totals.workingCapital]
+    ].map(([name, amount]) => `
+      <div class="budget-total" style="margin-bottom: 10px;">
+        <span>${name}</span>
+        <strong>${formatMoney(amount)}</strong>
+      </div>
+    `).join("")}
+
+    <div class="budget-total" style="margin-top: 20px;">
+      <strong>Total Before Contingency</strong>
+      <strong>${formatMoney(totals.subtotal)}</strong>
+    </div>
+
+    <p class="hint" style="margin-top: 20px;">
+      Your working capital reserve covers
+      ${totals.reserveMonths} months of estimated operating
+      expenses. This is a planning allowance, not a
+      guarantee of how long your cash will last.
+    </p>
+  `;
+}
