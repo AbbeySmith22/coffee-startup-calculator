@@ -1263,11 +1263,59 @@ function renderBudgetSummary() {
       <strong>${formatMoney(totals.subtotal)}</strong>
     </div>
 
+    
     <p class="hint" style="margin-top: 20px;">
       Your working capital reserve covers
       ${totals.reserveMonths} months of estimated operating
       expenses. This is a planning allowance, not a
       guarantee of how long your cash will last.
     </p>
+
+    <div class="field">
+      <label for="contingencyPercent">
+        Contingency Allowance (%)
+      </label>
+      <p class="hint">
+        Choose an additional percentage to allow for
+        unexpected startup costs. Enter your own figure.
+      </p>
+      <input
+        id="contingencyPercent"
+        type="number"
+        min="0"
+        max="100"
+        step="1"
+        value="10"
+      >
+    </div>
+
+    <div class="field">
+      <label for="availableFunding">
+        Total Available Funding ($)
+      </label>
+      <p class="hint">
+        Include your available savings and confirmed
+        financing. Do not include loans that are
+        still awaiting approval.
+      </p>
+      <input
+        id="availableFunding"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Enter available funding ($)"
+      >
+    </div>
+
+    <div class="budget-total">
+      <strong>Total Funding Required</strong>
+      <strong id="totalFundingRequired">—</strong>
+    </div>
+
+    <div class="budget-total" style="margin-top: 12px;">
+      <strong>Funding Gap / Surplus</strong>
+      <strong id="fundingGap">—</strong>
+    </div>
   `;
 }
+
