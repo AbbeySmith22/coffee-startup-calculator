@@ -1711,6 +1711,40 @@ function downloadBudgetCSV() {
     });
   });
 
+  const totals = getStartupBudgetTotals();
+
+  const savedFunding = JSON.parse(
+    sessionStorage.getItem("coffeeBudgetFunding") || "{}"
+  );
+
+  const contingencyPercent =
+    Number(savedFunding.contingencyPercent ?? 10);
+
+  const contingencyAmount =
+    totals.startupCosts * (contingencyPercent / 100);
+
+  const totalRequired =
+    totals.subtotal + contingencyAmount;
+
+  const availableFunding = savedFunding.availableFunding;
+
+  rows.push(
+    [],
+    ["Budget Summary", "One-Time Startup Costs", totals.startupCosts],
+    ["Budget Summary", "Monthly Operating Expenses", totals.monthlyOperating],
+    ["Budget Summary", "Working Capital Reserve Months", totals.reserveMonths],
+    ["Budget Summary", "Working Capital Reserve", totals.workingCapital],
+    ["Budget Summary", "Total Before Contingency", totals.subtotal],
+    ["Budget Summary", "Contingency Percentage", contingencyPercent],
+    ["Budget Summary", "Contingency Amount", contingencyAmount],
+    ["Budget Summary", "Total Funding Required", totalRequired],
+    ["Budget Summary", "Available Funding",
+      availableFunding == null ? "" : Number(availableFunding)],
+    ["Budget Summary", "Funding Gap / Surplus",
+      availableFunding == null ? "" : Number(availableFunding) - totalRequired]
+  );
+
+
   const csv = rows.map(row =>
     row.map(value =>
       '"' + String(value).replace(/"/g, '""') + '"'
