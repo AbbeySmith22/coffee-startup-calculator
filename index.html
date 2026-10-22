@@ -144,6 +144,49 @@
     align-items: flex-start;
   }
 }
+  
+@media print {
+  body {
+    background: white !important;
+    color: #252120;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #budgetSummary,
+  #budgetSummary * {
+    visibility: visible;
+  }
+
+  #budgetSummary {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  #budgetSummary button {
+    display: none !important;
+  }
+
+  #budgetSummary .budget-total {
+    break-inside: avoid;
+    border: 1px solid #ddd;
+  }
+
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+}
+
   </style>
 </head>
 
