@@ -1527,3 +1527,70 @@ function buildFullBudgetReport() {
   }).join("");
 }
 
+function printFullBudgetReport() {
+  const reportContent = buildFullBudgetReport();
+  const totals = getStartupBudgetTotals();
+
+  const reportWindow = window.open("", "_blank");
+
+  if (!reportWindow) {
+    alert("Please allow pop-ups to download your budget report.");
+    return;
+  }
+
+  reportWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Coffee Shop Startup Budget Report</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          color: #252120;
+          margin: 40px;
+        }
+
+        h1 { color: #252120; }
+        h2 {
+          margin-top: 30px;
+          border-bottom: 2px solid #F8B144;
+          padding-bottom: 8px;
+        }
+
+        th, td {
+          padding: 9px;
+          border-bottom: 1px solid #E8E0D8;
+        }
+
+        .report-section {
+          break-inside: avoid;
+        }
+
+        @page {
+          size: A4;
+          margin: 15mm;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Coffee Shop Startup Budget Report</h1>
+      <p><strong>CoffeeBusiness.com</strong></p>
+      <p>Prepared: ${new Date().toLocaleDateString()}</p>
+
+      ${reportContent}
+
+      <h2>Startup Budget Summary</h2>
+      <p>One-time startup costs: ${formatMoney(totals.startupCosts)}</p>
+      <p>Working capital reserve (${totals.reserveMonths} months):
+        ${formatMoney(totals.workingCapital)}</p>
+      <p><strong>Total before contingency:
+        ${formatMoney(totals.subtotal)}</strong></p>
+    </body>
+    </html>
+  `);
+
+  reportWindow.document.close();
+  reportWindow.focus();
+  reportWindow.print();
+}
+
