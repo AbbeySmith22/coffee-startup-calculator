@@ -1105,6 +1105,23 @@ function renderWorkingCapitalCalculator() {
 
   updateWorkingCapitalTotal();
 
+  document.getElementById("workingCapitalNext")
+    .addEventListener("click", () => {
+      document.getElementById("workingCapitalCalculator")
+        .style.display = "none";
+
+      renderBudgetSummary();
+
+      document.getElementById("budgetSummary")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+
   document.getElementById("workingCapitalBack")
     .addEventListener("click", () => {
       document.getElementById("workingCapitalCalculator")
