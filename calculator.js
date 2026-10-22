@@ -1187,3 +1187,44 @@ document.addEventListener("DOMContentLoaded", () => {
     renderWorkingCapitalCalculator();
   }
 });
+
+function getSectionTotal(items, values) {
+  return items.reduce((sum, item) => {
+    return sum + (values[item.id] || 0);
+  }, 0);
+}
+
+function getStartupBudgetTotals() {
+  const equipment = getSectionTotal(equipmentItems, equipmentValues);
+  const construction = getSectionTotal(constructionItems, constructionValues);
+  const property = getSectionTotal(propertyItems, propertyValues);
+  const inventory = getSectionTotal(inventoryItems, inventoryValues);
+  const staffing = getSectionTotal(staffingItems, staffingValues);
+
+  const monthlyOperating = getSectionTotal(
+    workingCapitalItems,
+    workingCapitalValues
+  );
+
+  const reserveMonths = Number(
+    document.getElementById("reserveMonths").value
+  );
+
+  const workingCapital = monthlyOperating * reserveMonths;
+
+  const startupCosts =
+    equipment + construction + property + inventory + staffing;
+
+  return {
+    equipment,
+    construction,
+    property,
+    inventory,
+    staffing,
+    monthlyOperating,
+    reserveMonths,
+    workingCapital,
+    startupCosts,
+    subtotal: startupCosts + workingCapital
+  };
+}
