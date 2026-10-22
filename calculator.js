@@ -894,6 +894,21 @@ function renderStaffingCalculator() {
 
   updateStaffingTotal();
 
+  document.getElementById("staffingNext")
+    .addEventListener("click", () => {
+      document.getElementById("staffingCalculator")
+        .style.display = "none";
+
+      document.getElementById("workingCapitalCalculator")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+
   document.getElementById("staffingBack")
     .addEventListener("click", () => {
       document.getElementById("staffingCalculator")
