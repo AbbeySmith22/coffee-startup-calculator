@@ -1624,6 +1624,22 @@ function printFullBudgetReport() {
       <p><strong>CoffeeBusiness.com</strong></p>
       <p>Prepared: ${new Date().toLocaleDateString()}</p>
 
+      <h2>Your Coffee Shop Concept</h2>
+
+      <p><strong>Shop Format:</strong>
+        ${concept.format || "Not specified"}</p>
+
+      <p><strong>Shop Size:</strong>
+        ${concept.squareFeet
+          ? concept.squareFeet + " sq ft"
+          : "Not specified"}</p>
+
+      <p><strong>Planning Stage:</strong>
+        ${concept.stage || "Not specified"}</p>
+
+      <p><strong>Budget Confidence:</strong>
+        ${concept.confidence || "Not specified"}</p>
+
       ${reportContent}
 
       <h2>Startup Budget Summary</h2>
