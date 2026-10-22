@@ -1104,9 +1104,24 @@ function renderWorkingCapitalCalculator() {
     .addEventListener("change", updateWorkingCapitalTotal);
 
   updateWorkingCapitalTotal();
+
+  document.getElementById("workingCapitalBack")
+    .addEventListener("click", () => {
+      document.getElementById("workingCapitalCalculator")
+        .style.display = "none";
+
+      document.getElementById("staffingCalculator")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
 }
 
 function updateWorkingCapitalTotal() {
+
 
   const monthlyTotal = workingCapitalItems.reduce((sum, item) => {
     return sum + (workingCapitalValues[item.id] || 0);
