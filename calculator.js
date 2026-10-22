@@ -1343,6 +1343,25 @@ function renderBudgetSummary() {
     .addEventListener("input", updateFundingSummary);
 
  
+  try {
+    const savedFunding = JSON.parse(
+      sessionStorage.getItem("coffeeBudgetFunding") || "{}"
+    );
+
+    if (savedFunding.contingencyPercent != null) {
+      document.getElementById("contingencyPercent").value =
+        savedFunding.contingencyPercent;
+    }
+
+    if (savedFunding.availableFunding != null) {
+      document.getElementById("availableFunding").value =
+        savedFunding.availableFunding;
+    }
+  } catch (error) {
+    console.warn("Could not restore funding information.");
+  }
+
+
   updateFundingSummary();
 
   const backButton = document.createElement("button");
