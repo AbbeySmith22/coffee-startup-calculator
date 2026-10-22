@@ -1390,9 +1390,11 @@ function renderBudgetSummary() {
   printButton.textContent = "Download My Budget Report";
   printButton.style.marginTop = "12px";
 
+ 
   printButton.addEventListener("click", () => {
-    window.print();
+    printFullBudgetReport();
   });
+
 
   container.appendChild(printButton);
 
