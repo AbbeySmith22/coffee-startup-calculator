@@ -1252,6 +1252,26 @@ function renderBudgetSummary() {
 
   const totals = getStartupBudgetTotals();
 
+  const savedFunding = JSON.parse(
+    sessionStorage.getItem("coffeeBudgetFunding") || "{}"
+  );
+
+  const contingencyPercent =
+    Number(savedFunding.contingencyPercent ?? 10);
+
+  const contingencyAmount =
+    totals.startupCosts * (contingencyPercent / 100);
+
+  const totalRequired =
+    totals.subtotal + contingencyAmount;
+
+  const availableFunding = savedFunding.availableFunding;
+
+  const fundingDifference =
+    availableFunding === null || availableFunding === undefined
+      ? null
+      : Number(availableFunding) - totalRequired;
+
   container.innerHTML = `
     <div class="step">STEP 8 — YOUR RESULTS</div>
     <h2>Your Coffee Shop Startup Budget</h2>
