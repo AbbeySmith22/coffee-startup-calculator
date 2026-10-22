@@ -1445,3 +1445,10 @@ function updateFundingSummary() {
   );
 }
 
+function getBudgetReportRows(items, values) {
+  return items.map(item => ({
+    name: item.label || item.name || item.id,
+    amount: Number(values[item.id]) || 0
+  }));
+}
+
