@@ -1422,6 +1422,19 @@ function renderBudgetSummary() {
 
   container.appendChild(printButton);
 
+  const csvButton = document.createElement("button");
+  csvButton.type = "button";
+  csvButton.textContent = "Download Editable Budget (CSV)";
+  csvButton.style.marginTop = "12px";
+  csvButton.style.background = "#F8B144";
+  csvButton.style.color = "#252120";
+
+  csvButton.addEventListener("click", () => {
+    downloadBudgetCSV();
+  });
+
+  container.appendChild(csvButton);
+
 }
 
 function updateFundingSummary() {
