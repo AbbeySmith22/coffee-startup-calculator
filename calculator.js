@@ -1681,3 +1681,42 @@ function printFullBudgetReport() {
   reportWindow.print();
 }
 
+function downloadBudgetCSV() {
+  const sections = getFullBudgetReportData();
+  const rows = [
+    ["Coffee Shop Startup Budget"],
+    ["Section", "Expense", "Estimated Cost"]
+  ];
+
+  sections.forEach(section => {
+    section.rows.forEach(row => {
+      rows.push([
+        section.title,
+        row.name,
+        row.amount
+      ]);
+    });
+  });
+
+  const csv = rows.map(row =>
+    row.map(value =>
+      '"' + String(value).replace(/"/g, '""') + '"'
+    ).join(",")
+  ).join("\r\n");
+
+  const blob = new Blob([csv], {
+    type: "text/csv;charset=utf-8;"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "coffee-shop-startup-budget.csv";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  URL.revokeObjectURL(url);
+}
+
