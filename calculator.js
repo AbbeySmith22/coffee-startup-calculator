@@ -993,3 +993,79 @@ const workingCapitalItems = [
 ];
 
 const workingCapitalValues = {};
+
+function renderWorkingCapitalCalculator() {
+  const container = document.getElementById("workingCapitalCalculator");
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="step">STEP 7 — STARTUP COSTS</div>
+    <h2>Working Capital & Cash Reserves</h2>
+
+    <p class="hint">
+      Opening your coffee shop is only the beginning.
+      Estimate your monthly operating expenses so you can
+      plan enough cash to support the business while sales grow.
+    </p>
+
+    ${workingCapitalItems.map(item => `
+      <div class="field">
+        <label for="working-${item.id}">${item.name}</label>
+        <p class="hint">${item.help}</p>
+        <input
+          id="working-${item.id}"
+          type="number"
+          min="0"
+          step="0.01"
+          value="${workingCapitalValues[item.id] ?? ""}"
+          placeholder="Enter monthly cost ($)"
+        >
+      </div>
+    `).join("")}
+
+    <div class="field">
+      <label for="reserveMonths">
+        How many months of operating reserves do you want to plan for?
+      </label>
+      <p class="hint">
+        Choose your planning period. This is not a guaranteed
+        runway because actual sales and expenses will vary.
+      </p>
+      <select id="reserveMonths">
+        <option value="3">3 months</option>
+        <option value="4">4 months</option>
+        <option value="5">5 months</option>
+        <option value="6">6 months</option>
+        <option value="9">9 months</option>
+        <option value="12">12 months</option>
+      </select>
+    </div>
+
+    <div class="budget-total">
+      <strong>Estimated Monthly Operating Costs</strong>
+      <strong id="monthlyOperatingTotal">$0</strong>
+    </div>
+
+    <div class="budget-total" style="margin-top: 12px;">
+      <strong>Planned Working Capital Reserve</strong>
+      <strong id="workingCapitalTotal">$0</strong>
+    </div>
+
+    <p class="hint">
+      Bellissimo planning reminder: Plan for a slower sales
+      ramp and unexpected expenses. This reserve is a
+      conservative planning allowance, not a prediction
+      of your actual cash flow.
+    </p>
+
+    <button type="button" id="workingCapitalBack"
+      style="margin-top: 24px; background: #E8E0D8;">
+      ← Back to Staffing & Pre-Opening
+    </button>
+
+    <button type="button" id="workingCapitalNext"
+      style="margin-top: 12px;">
+      Continue to Budget Summary →
+    </button>
+  `;
+}
