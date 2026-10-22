@@ -1117,3 +1117,43 @@ function updateWorkingCapitalTotal() {
     })
   );
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const saved = JSON.parse(
+      sessionStorage.getItem("coffeeBudgetWorkingCapital") || "{}"
+    );
+
+    workingCapitalItems.forEach(item => {
+      const value = saved.costs?.[item.id];
+
+      if (
+        typeof value === "number" &&
+        Number.isFinite(value) &&
+        value >= 0
+      ) {
+        workingCapitalValues[item.id] = value;
+      }
+    });
+
+    renderWorkingCapitalCalculator();
+
+    const savedMonths = Number(saved.months);
+    const monthsDropdown = document.getElementById("reserveMonths");
+
+    if (
+      saved.months != null &&
+      [...monthsDropdown.options].some(
+        option => Number(option.value) === savedMonths
+      )
+    ) {
+      monthsDropdown.value = String(savedMonths);
+    }
+
+    updateWorkingCapitalTotal();
+
+  } catch (error) {
+    console.warn("Could not restore working capital values.");
+    renderWorkingCapitalCalculator();
+  }
+});
