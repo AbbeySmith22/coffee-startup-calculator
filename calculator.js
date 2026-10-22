@@ -1316,10 +1316,20 @@ function renderBudgetSummary() {
       <strong>Funding Gap / Surplus</strong>
       <strong id="fundingGap">—</strong>
     </div>
+
   `;
+
+  document.getElementById("contingencyPercent")
+    .addEventListener("input", updateFundingSummary);
+
+  document.getElementById("availableFunding")
+    .addEventListener("input", updateFundingSummary);
+
+  updateFundingSummary();
 }
 
 function updateFundingSummary() {
+
   const totals = getStartupBudgetTotals();
 
   const contingencyInput =
