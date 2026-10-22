@@ -1452,3 +1452,35 @@ function getBudgetReportRows(items, values) {
   }));
 }
 
+function getFullBudgetReportData() {
+  return [
+    {
+      title: "Equipment & Furnishings",
+      rows: getBudgetReportRows(equipmentItems, equipmentValues)
+    },
+    {
+      title: "Construction & Build-Out",
+      rows: getBudgetReportRows(constructionItems, constructionValues)
+    },
+    {
+      title: "Rent & Property Costs",
+      rows: getBudgetReportRows(propertyItems, propertyValues)
+    },
+    {
+      title: "Initial Inventory & Opening Supplies",
+      rows: getBudgetReportRows(inventoryItems, inventoryValues)
+    },
+    {
+      title: "Staffing & Pre-Opening Expenses",
+      rows: getBudgetReportRows(staffingItems, staffingValues)
+    },
+    {
+      title: "Working Capital — Monthly Expenses",
+      rows: getBudgetReportRows(
+        workingCapitalItems,
+        workingCapitalValues
+      )
+    }
+  ];
+}
+
