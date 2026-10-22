@@ -1607,6 +1607,26 @@ function printFullBudgetReport() {
         ${formatMoney(totals.workingCapital)}</p>
       <p><strong>Total before contingency:
         ${formatMoney(totals.subtotal)}</strong></p>
+        
+      <p>Contingency (${contingencyPercent}%):
+        ${formatMoney(contingencyAmount)}</p>
+
+      <h2>Total Funding Required:
+        ${formatMoney(totalRequired)}</h2>
+
+      <p>Available Funding:
+        ${availableFunding == null
+          ? "Not entered"
+          : formatMoney(Number(availableFunding))}</p>
+
+      <p><strong>
+        ${fundingDifference === null
+          ? "Funding gap: Not calculated"
+          : fundingDifference < 0
+            ? "Funding Gap: " + formatMoney(Math.abs(fundingDifference))
+            : "Funding Surplus: " + formatMoney(fundingDifference)}
+      </strong></p>
+
     </body>
     </html>
   `);
