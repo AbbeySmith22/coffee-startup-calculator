@@ -1384,6 +1384,18 @@ function renderBudgetSummary() {
   });
 
   container.appendChild(backButton);
+  
+  const printButton = document.createElement("button");
+  printButton.type = "button";
+  printButton.textContent = "Download My Budget Report";
+  printButton.style.marginTop = "12px";
+
+  printButton.addEventListener("click", () => {
+    window.print();
+  });
+
+  container.appendChild(printButton);
+
 }
 
 function updateFundingSummary() {
