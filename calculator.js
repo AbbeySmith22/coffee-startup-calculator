@@ -1557,6 +1557,10 @@ function printFullBudgetReport() {
   const reportContent = buildFullBudgetReport();
   const totals = getStartupBudgetTotals();
 
+  const concept = JSON.parse(
+    sessionStorage.getItem("coffeeBudgetConcept") || "{}"
+  );
+
   const savedFunding = JSON.parse(
     sessionStorage.getItem("coffeeBudgetFunding") || "{}"
   );
