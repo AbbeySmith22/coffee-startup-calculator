@@ -1484,3 +1484,46 @@ function getFullBudgetReportData() {
   ];
 }
 
+function buildFullBudgetReport() {
+  const sections = getFullBudgetReportData();
+
+  return sections.map(section => {
+    const rows = section.rows.map(row => `
+      <tr>
+        <td>${row.name}</td>
+        <td style="text-align:right;">
+          ${formatMoney(row.amount)}
+        </td>
+      </tr>
+    `).join("");
+
+    const total = section.rows.reduce(
+      (sum, row) => sum + row.amount,
+      0
+    );
+
+    return `
+      <section class="report-section">
+        <h2>${section.title}</h2>
+        <table style="width:100%; border-collapse:collapse;">
+          <thead>
+            <tr>
+              <th style="text-align:left;">Expense</th>
+              <th style="text-align:right;">Estimated Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows}
+            <tr>
+              <td><strong>Section Total</strong></td>
+              <td style="text-align:right;">
+                <strong>${formatMoney(total)}</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    `;
+  }).join("");
+}
+
