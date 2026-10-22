@@ -1319,3 +1319,48 @@ function renderBudgetSummary() {
   `;
 }
 
+function updateFundingSummary() {
+  const totals = getStartupBudgetTotals();
+
+  const contingencyInput =
+    document.getElementById("contingencyPercent");
+
+  const fundingInput =
+    document.getElementById("availableFunding");
+
+  const contingencyPercent = Math.min(
+    100,
+    Math.max(0, Number(contingencyInput.value) || 0)
+  );
+
+  const contingencyAmount =
+    totals.startupCosts * (contingencyPercent / 100);
+
+  const totalRequired =
+    totals.subtotal + contingencyAmount;
+
+  const fundingEntered = fundingInput.value.trim() !== "";
+  const availableFunding = Math.max(
+    0,
+    Number(fundingInput.value) || 0
+  );
+
+  const difference = availableFunding - totalRequired;
+
+  document.getElementById("totalFundingRequired")
+    .textContent = formatMoney(totalRequired);
+
+  document.getElementById("fundingGap")
+    .textContent = fundingEntered
+      ? `${difference < 0 ? "Funding Gap: " : "Surplus: "}${formatMoney(Math.abs(difference))}`
+      : "Enter available funding";
+
+  sessionStorage.setItem(
+    "coffeeBudgetFunding",
+    JSON.stringify({
+      contingencyPercent,
+      availableFunding: fundingEntered ? availableFunding : null
+    })
+  );
+}
+
