@@ -1067,10 +1067,32 @@ function renderWorkingCapitalCalculator() {
       style="margin-top: 12px;">
       Continue to Budget Summary →
     </button>
+
   `;
+
+  workingCapitalItems.forEach(item => {
+    const input = document.getElementById(`working-${item.id}`);
+
+    input.addEventListener("input", () => {
+      const value = Number(input.value);
+
+      workingCapitalValues[item.id] =
+        input.value !== "" && Number.isFinite(value) && value >= 0
+          ? value
+          : null;
+
+      updateWorkingCapitalTotal();
+    });
+  });
+
+  document.getElementById("reserveMonths")
+    .addEventListener("change", updateWorkingCapitalTotal);
+
+  updateWorkingCapitalTotal();
 }
 
 function updateWorkingCapitalTotal() {
+
   const monthlyTotal = workingCapitalItems.reduce((sum, item) => {
     return sum + (workingCapitalValues[item.id] || 0);
   }, 0);
