@@ -1342,10 +1342,33 @@ function renderBudgetSummary() {
   document.getElementById("availableFunding")
     .addEventListener("input", updateFundingSummary);
 
+ 
   updateFundingSummary();
+
+  const backButton = document.createElement("button");
+  backButton.type = "button";
+  backButton.textContent = "← Back to Working Capital";
+  backButton.style.marginTop = "24px";
+  backButton.style.background = "#E8E0D8";
+
+  backButton.addEventListener("click", () => {
+    document.getElementById("budgetSummary")
+      .style.display = "none";
+
+    document.getElementById("workingCapitalCalculator")
+      .style.display = "block";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+
+  container.appendChild(backButton);
 }
 
 function updateFundingSummary() {
+
 
   const totals = getStartupBudgetTotals();
 
