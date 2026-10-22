@@ -1553,6 +1553,27 @@ function printFullBudgetReport() {
   const reportContent = buildFullBudgetReport();
   const totals = getStartupBudgetTotals();
 
+  const savedFunding = JSON.parse(
+    sessionStorage.getItem("coffeeBudgetFunding") || "{}"
+  );
+
+  const contingencyPercent =
+    Number(savedFunding.contingencyPercent ?? 10);
+
+  const contingencyAmount =
+    totals.startupCosts * (contingencyPercent / 100);
+
+  const totalRequired =
+    totals.subtotal + contingencyAmount;
+
+  const availableFunding = savedFunding.availableFunding;
+
+  const fundingDifference =
+    availableFunding == null
+      ? null
+      : Number(availableFunding) - totalRequired;
+
+
   const reportWindow = window.open("", "_blank");
 
   if (!reportWindow) {
