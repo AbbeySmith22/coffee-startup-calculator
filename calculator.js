@@ -1069,3 +1069,29 @@ function renderWorkingCapitalCalculator() {
     </button>
   `;
 }
+
+function updateWorkingCapitalTotal() {
+  const monthlyTotal = workingCapitalItems.reduce((sum, item) => {
+    return sum + (workingCapitalValues[item.id] || 0);
+  }, 0);
+
+  const months = Number(
+    document.getElementById("reserveMonths").value
+  );
+
+  const reserveTotal = monthlyTotal * months;
+
+  document.getElementById("monthlyOperatingTotal").textContent =
+    formatMoney(monthlyTotal);
+
+  document.getElementById("workingCapitalTotal").textContent =
+    formatMoney(reserveTotal);
+
+  sessionStorage.setItem(
+    "coffeeBudgetWorkingCapital",
+    JSON.stringify({
+      costs: workingCapitalValues,
+      months: months
+    })
+  );
+}
