@@ -1745,6 +1745,18 @@ function downloadBudgetCSV() {
   );
 
 
+  const concept = JSON.parse(
+    sessionStorage.getItem("coffeeBudgetConcept") || "{}"
+  );
+
+  rows.push(
+    [],
+    ["Coffee Shop Concept", "Shop Format", concept.format || ""],
+    ["Coffee Shop Concept", "Shop Size (sq ft)", concept.squareFeet || ""],
+    ["Coffee Shop Concept", "Planning Stage", concept.stage || ""],
+    ["Coffee Shop Concept", "Budget Confidence", concept.confidence || ""]
+  );
+
   const csv = rows.map(row =>
     row.map(value =>
       '"' + String(value).replace(/"/g, '""') + '"'
